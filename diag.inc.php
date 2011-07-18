@@ -30,7 +30,7 @@ defined('PLUGIN_DIAG_SEQDIAG_PATH')   or define('PLUGIN_DIAG_SEQDIAG_PATH', '/us
 defined('PLUGIN_DIAG_ACTDIAG_PATH')   or define('PLUGIN_DIAG_ACTDIAG_PATH', '/usr/local/bin/actdiag');
 
 defined('PLUGIN_DIAG_IMAGE_TYPE') or define('PLUGIN_DIAG_IMAGE_TYPE', 'png');
-defined('PLUGIN_DIAG_FONT_PATH')  or define('PLUGIN_DIAG_FONT_PATH', '/Library/Fonts/Osaka.ttf');
+defined('PLUGIN_DIAG_FONT_PATH')  or define('PLUGIN_DIAG_FONT_PATH', ''); // --font=/Library/Fonts/Osaka.ttf
 defined('PLUGIN_DIAG_ANTIALIAS')  or define('PLUGIN_DIAG_ANTIALIAS', '--antialias'); // or ''
 
 function plugin_diag_init() {
@@ -106,7 +106,7 @@ function plugin_diag_action() {
         return 'Error(A): The type of the argument is illegal.';
     }
 
-    $command .= ' -T '.PLUGIN_DIAG_IMAGE_TYPE.' --font='.PLUGIN_DIAG_FONT_PATH.' '.PLUGIN_DIAG_ANTIALIAS.' -o '.PLUGIN_DIAG_IMAGE_DIR.$dist_temp_name.' '.PLUGIN_DIAG_IMAGE_DIR.$src_temp_name;
+    $command .= ' -T '.PLUGIN_DIAG_IMAGE_TYPE.' '.PLUGIN_DIAG_FONT_PATH.' '.PLUGIN_DIAG_ANTIALIAS.' -o '.PLUGIN_DIAG_IMAGE_DIR.$dist_temp_name.' '.PLUGIN_DIAG_IMAGE_DIR.$src_temp_name;
     `$command`;
     header('Content-type: image/'.PLUGIN_DIAG_IMAGE_TYPE);
     echo file_get_contents(PLUGIN_DIAG_IMAGE_DIR.$dist_temp_name);
